@@ -21,6 +21,22 @@ def nearestPrime(n):
         if flag==1:
             return i
     return 2
+def gete(phi,p,q):
+    e=2
+    while e<phi:
+        if gcd(e,phi)==1:
+            if e!=p and e!=q:
+                break
+        e+=1
+    return e
+def getd(e,phi,p,q):
+    d=2
+    while True:
+        if(d*e)%phi==1:
+            if(d!=p and d!=q and d!=e):
+                break
+        d+=1
+    return d
 x=input("Enter the string:")
 p_len=len(x)
 y=input("Enter the passphrase:")
@@ -31,18 +47,9 @@ if p==q:
 print(f"value of p={p},q={q}")
 n=p*q
 phi=(p-1)*(q-1)
-e=2
-while e<phi:
-    if gcd(e,phi)==1:
-        if e!=p and e!=q:
-            break
-    e+=1
-d=2
-while True:
-    if(d*e)%phi==1:
-        if(d!=p and d!=q and d!=e):
-            break
-    d+=1
+print(f"Value of n={n},phi={phi}")
+e=gete(phi,p,q)
+d=getd(e,phi,p,q)
 print(f"Value of e={e},d={d}")
 pt=int(input(f"Enter the plain text less than {phi}:"))
 if pt>=phi:
